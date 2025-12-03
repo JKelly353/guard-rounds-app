@@ -3,6 +3,7 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzTc9gD2td1IR1JGPGe0imX
 function logLocation(location, group) {
   fetch(API_URL, {
     method: "POST",
+    mode: "no-cors",       // ← REQUIRED FOR GOOGLE APPS SCRIPT
     body: JSON.stringify({ location, group }),
     headers: { "Content-Type": "application/json" }
   });
@@ -19,3 +20,4 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     document.getElementById(btn.dataset.tab).classList.add("active");
   });
 });
+
