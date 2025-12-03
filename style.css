@@ -1,0 +1,50 @@
+body {
+  background-color: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.tabs {
+  display: flex;
+  background: #222;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  background: #222;
+  color: #888;
+  font-size: 18px;
+}
+
+.tab-btn.active {
+  color: red;
+  border-bottom: 2px solid red;
+}
+
+.tab {
+  display: none;
+  padding: 20px;
+}
+
+.tab.active {
+  display: block;
+}
+
+button {
+  width: 100%;
+  padding: 18px;
+  margin: 10px 0;
+  font-size: 20px;
+  background: #330000;
+  color: white;
+  border: 1px solid red;
+  border-radius: 8px;
+}
+
+button:active {
+  background: red;
+}

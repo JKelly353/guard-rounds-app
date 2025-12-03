@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guard Rounds App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="national">National Life</button>
+  <button class="tab-btn" data-tab="davis">Davis Building</button>
+  <button class="tab-btn" data-tab="outside">Outside</button>
+</div>
+
+<div id="national" class="tab active">
+  <h2>National Life Floors</h2>
+  <div class="buttons">
+    <button onclick="logLocation('Floor 1','National')">Floor 1</button>
+    <button onclick="logLocation('Floor 2','National')">Floor 2</button>
+    <button onclick="logLocation('Floor 3','National')">Floor 3</button>
+    <button onclick="logLocation('Floor 4','National')">Floor 4</button>
+    <button onclick="logLocation('Floor 5','National')">Floor 5</button>
+  </div>
+</div>
+
+<div id="davis" class="tab">
+  <h2>Davis Building</h2>
+  <div class="buttons">
+    <button onclick="logLocation('B','Davis')">Basement (B)</button>
+    <button onclick="logLocation('1','Davis')">1</button>
+    <button onclick="logLocation('2','Davis')">2</button>
+    <button onclick="logLocation('3','Davis')">3</button>
+    <button onclick="logLocation('4','Davis')">4</button>
+    <button onclick="logLocation('5','Davis')">5</button>
+    <button onclick="logLocation('6','Davis')">6</button>
+  </div>
+</div>
+
+<div id="outside" class="tab">
+  <h2>Outside Areas</h2>
+  <div class="buttons">
+    <button onclick="logLocation('Daycare','Outside')">Daycare</button>
+    <button onclick="logLocation('Transfer Station','Outside')">Transfer Station</button>
+    <button onclick="logLocation('Parking Garage','Outside')">Parking Garage</button>
+    <button onclick="logLocation('Guest House','Outside')">Guest House</button>
+    <button onclick="logLocation('Back Parking Lot','Outside')">Back Parking Lot</button>
+    <button onclick="logLocation('Generator Room','Outside')">Generator Room</button>
+    <button onclick="logLocation('Dewey Building','Outside')">Dewey Building</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
