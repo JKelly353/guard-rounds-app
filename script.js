@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbzTc9gD2td1IR1JGPGe0imXL-YZTA0PkRDbv_M5xlQlUyZcKsaihByHWBTtspqcPdqe4w/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbyHzmP9UtgASao6xPVQAykH0ukiKWLeiujauGCQwz3xMNmPm-pM5yLH4MKKlfKH80Aalw/exec";
 
 function logLocation(location, group) {
   fetch(API_URL, {
@@ -20,4 +20,5 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     document.getElementById(btn.dataset.tab).classList.add("active");
   });
 });
+
 
