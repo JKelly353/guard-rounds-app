@@ -20,8 +20,39 @@ window.onload = () => {
     document.getElementById("login-screen").style.display = "none";
     document.getElementById("app").style.display = "block";
   }
+   updateLastScanTimes(); // load last scan times
 };
 // ------------------------------------------------
+function updateLastScanTimes() {
+  fetch(API_URL)
+    .then(response => response.json())
+    .then(rows => {
+      // rows = [ [timestamp, location, group], ... ]
+
+      const lastTimes = {};
+
+      rows.slice(1).forEach(row => {  
+        const timestamp = row[0];
+        const location = row[1];
+
+        // Only update if this location hasn't been seen yet, or if this timestamp is newer
+        if (!lastTimes[location] || new Date(timestamp) > new Date(lastTimes[location])) {
+          lastTimes[location] = timestamp;
+        }
+      });
+
+      // Now update HTML
+      for (const location in lastTimes) {
+        const cleanID = location.replace(/\s+/g, '');
+        const el = document.getElementById(`last-${cleanID}`);
+        if (el) {
+          const dateObj = new Date(lastTimes[location]);
+          el.textContent = `Last scanned: ${dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+        }
+      }
+    })
+    .catch(err => console.error("Error fetching data:", err));
+}
 
 const API_URL = "https://script.google.com/macros/s/AKfycbyCLXFC9PrJzM05Xpo-i2_qD-KR28TVXV31EU3AGELLR8Ve1I9W4C1l6T9retC1niBd7Q/exec";
 
@@ -34,6 +65,7 @@ function logLocation(location, group) {
   });
 
   alert(`Logged: ${location}`);
+  updateLastScanTimes();
 }
 
 document.querySelectorAll(".tab-btn").forEach(btn => {
@@ -45,6 +77,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     document.getElementById(btn.dataset.tab).classList.add("active");
   });
 });
+
 
 
 
