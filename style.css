@@ -6,6 +6,11 @@ body {
   padding: 0;
 }
 
+body {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.5px;
+}
+
 .tabs {
   display: flex;
   background: #222;
@@ -152,3 +157,4 @@ button:active {
 .tab-btn {
   flex: 1 0 auto;       /* Keep all tab buttons evenly sized */
 }
+
