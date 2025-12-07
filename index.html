@@ -7,7 +7,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="login-screen" class="login-container">
+  <h2>Enter PIN</h2>
+  <input type="password" id="pin-input" maxlength="4">
+  <button onclick="checkPIN()">Unlock</button>
+</div>
 
+  <div id="app" style="display:none;">
+    
 <div class="tabs">
   <button class="tab-btn active" data-tab="national">National Life</button>
   <button class="tab-btn" data-tab="davis">Davis Building</button>
@@ -54,3 +61,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
