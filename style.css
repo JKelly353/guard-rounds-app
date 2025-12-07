@@ -183,3 +183,29 @@ button:active {
   box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }
 
+.tabs {
+  display: flex;
+  background: #111;
+  border-bottom: 1px solid red;
+  padding: 5px 0;
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #bbb;
+  padding: 10px 5px;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.tab-btn.active {
+  color: #ff3333;
+  border-bottom: 2px solid red;
+}
+
+.tab-btn:hover {
+  color: white;
+}
+
