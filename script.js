@@ -1,5 +1,5 @@
 // --------------- PIN LOGIN SYSTEM ---------------
-const CORRECT_PIN = "1234";  // <<< CHANGE THIS TO YOUR PIN
+const CORRECT_PIN = "4282";  // <<< CHANGE THIS TO YOUR PIN
 
 function checkPIN() {
   const pin = document.getElementById("pin-input").value;
@@ -45,6 +45,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     document.getElementById(btn.dataset.tab).classList.add("active");
   });
 });
+
 
 
 
