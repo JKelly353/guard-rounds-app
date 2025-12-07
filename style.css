@@ -141,3 +141,14 @@ button:active {
   color: white;
   border-radius: 8px;
 }
+
+.tabs {
+  display: flex;
+  overflow-x: auto;     /* Allow scrolling of tab buttons only */
+  white-space: nowrap;  /* Keep buttons on 1 line */
+  width: 100%;
+}
+
+.tab-btn {
+  flex: 1 0 auto;       /* Keep all tab buttons evenly sized */
+}
