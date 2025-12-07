@@ -54,6 +54,55 @@ function updateLastScanTimes() {
     .catch(err => console.error("Error fetching data:", err));
 }
 
+function loadAnalytics() {
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(rows => {
+      rows = rows.slice(1); // remove header row
+
+      const today = new Date().toDateString();
+      let totalScansToday = 0;
+
+      const locationCounts = {};
+      const hourlyCounts = {};
+
+      rows.forEach(([timestamp, location, group]) => {
+        const time = new Date(timestamp);
+
+        // Count today’s scans
+        if (time.toDateString() === today) {
+          totalScansToday++;
+
+          // Count per location
+          locationCounts[location] = (locationCounts[location] || 0) + 1;
+
+          // Count per hour
+          const hour = time.getHours();
+          hourlyCounts[hour] = (hourlyCounts[hour] || 0) + 1;
+        }
+      });
+
+      // Build analytics HTML
+      let html = "";
+
+      html += `<div class="stat-item">Total scans today: <strong>${totalScansToday}</strong></div>`;
+
+      html += `<div class="stat-item"><strong>Scans per location:</strong><br>`;
+      for (let loc in locationCounts) {
+        html += `${loc}: ${locationCounts[loc]}<br>`;
+      }
+      html += `</div>`;
+
+      html += `<div class="stat-item"><strong>Scans by hour:</strong><br>`;
+      for (let hr in hourlyCounts) {
+        html += `${hr}:00 — ${hourlyCounts[hr]} scans<br>`;
+      }
+      html += `</div>`;
+
+      document.getElementById("stats-container").innerHTML = html;
+    });
+}
+
 const API_URL = "https://script.google.com/macros/s/AKfycbyCLXFC9PrJzM05Xpo-i2_qD-KR28TVXV31EU3AGELLR8Ve1I9W4C1l6T9retC1niBd7Q/exec";
 
 function logLocation(location, group) {
@@ -77,6 +126,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     document.getElementById(btn.dataset.tab).classList.add("active");
   });
 });
+
 
 
 
