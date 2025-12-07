@@ -102,6 +102,28 @@ function loadAnalytics() {
       document.getElementById("stats-container").innerHTML = html;
     });
 }
+function submitIncident() {
+  const location = document.getElementById("incident-location").value;
+  const note = document.getElementById("incident-text").value;
+
+  if (note.trim() === "") {
+    alert("Please enter a note before submitting.");
+    return;
+  }
+
+  fetch(API_URL, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify({
+      location: location + " (Incident)",
+      group: note
+    }),
+    headers: { "Content-Type": "application/json" }
+  });
+
+  document.getElementById("incident-confirm").textContent = "Incident submitted!";
+  document.getElementById("incident-text").value = "";
+}
 
 const API_URL = "https://script.google.com/macros/s/AKfycbyCLXFC9PrJzM05Xpo-i2_qD-KR28TVXV31EU3AGELLR8Ve1I9W4C1l6T9retC1niBd7Q/exec";
 
@@ -129,6 +151,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 }
   });
 });
+
 
 
 
