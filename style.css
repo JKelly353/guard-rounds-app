@@ -158,3 +158,28 @@ button:active {
   flex: 1 0 auto;       /* Keep all tab buttons evenly sized */
 }
 
+button {
+  background: #150000;
+  border: 1px solid #ff0000;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 8px 0;
+  width: 100%;
+  font-size: 18px;
+
+  /* Animation */
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+  transition: 0.2s ease;
+}
+
+button:hover {
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+  transform: scale(1.03);
+}
+
+button:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
