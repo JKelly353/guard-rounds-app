@@ -92,3 +92,11 @@ button:active {
   color: white;
   border-radius: 8px;
 }
+
+.last-scan {
+  color: #bbb;
+  font-size: 14px;
+  margin-top: -5px;
+  margin-bottom: 12px;
+  padding-left: 5px;
+}
