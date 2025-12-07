@@ -124,8 +124,12 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 
     document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
     document.getElementById(btn.dataset.tab).classList.add("active");
+    if (btn.dataset.tab === "analytics") {
+  loadAnalytics();
+}
   });
 });
+
 
 
 
