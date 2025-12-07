@@ -23,7 +23,7 @@ window.onload = () => {
 };
 // ------------------------------------------------
 
-const API_URL = "https://script.google.com/macros/s/AKfycbyHzmP9UtgASao6xPVQAykH0ukiKWLeiujauGCQwz3xMNmPm-pM5yLH4MKKlfKH80Aalw/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbyCLXFC9PrJzM05Xpo-i2_qD-KR28TVXV31EU3AGELLR8Ve1I9W4C1l6T9retC1niBd7Q/exec";
 
 function logLocation(location, group) {
   fetch(API_URL, {
@@ -45,6 +45,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     document.getElementById(btn.dataset.tab).classList.add("active");
   });
 });
+
 
 
 
