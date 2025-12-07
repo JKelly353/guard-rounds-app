@@ -20,6 +20,7 @@
   <button class="tab-btn" data-tab="davis">Davis Building</button>
   <button class="tab-btn" data-tab="outside">Outside</button>
   <button class="tab-btn" data-tab="analytics">Analytics</button>
+  <button class="tab-btn" data-tab="incidents">Incidents</button>
 </div>
 
 <div id="national" class="tab active">
@@ -84,10 +85,43 @@
     <p>Loading analytics...</p>
   </div>
 </div>
+<div id="incidents" class="tab">
+  <h2>Report Incident</h2>
 
+  <label for="incident-location">Location:</label>
+  <select id="incident-location">
+    <option value="Floor 1">Floor 1</option>
+    <option value="Floor 2">Floor 2</option>
+    <option value="Floor 3">Floor 3</option>
+    <option value="Floor 4">Floor 4</option>
+    <option value="Floor 5">Floor 5</option>
+    <option value="B">Davis Basement (B)</option>
+    <option value="1">Davis 1</option>
+    <option value="2">Davis 2</option>
+    <option value="3">Davis 3</option>
+    <option value="4">Davis 4</option>
+    <option value="5">Davis 5</option>
+    <option value="6">Davis 6</option>
+    <option value="Daycare">Daycare</option>
+    <option value="Transfer Station">Transfer Station</option>
+    <option value="Parking Garage">Parking Garage</option>
+    <option value="Guest House">Guest House</option>
+    <option value="Back Parking Lot">Back Parking Lot</option>
+    <option value="Generator Room">Generator Room</option>
+    <option value="Dewey Building">Dewey Building</option>
+  </select>
+
+  <label for="incident-text">Incident Note:</label>
+  <textarea id="incident-text" placeholder="Describe the incident..." rows="4"></textarea>
+
+  <button onclick="submitIncident()">Submit Incident</button>
+  <div id="incident-confirm" style="margin-top:10px; color:lightgreen;"></div>
+</div>
+    
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
