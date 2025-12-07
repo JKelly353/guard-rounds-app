@@ -209,3 +209,12 @@ button:active {
   color: white;
 }
 
+.tab {
+  animation: fadein 0.3s ease;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
