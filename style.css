@@ -48,3 +48,47 @@ button {
 button:active {
   background: red;
 }
+
+/* LOGIN SCREEN */
+
+.login-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* ensures it's on top */
+}
+
+.login-container h2 {
+  color: red;
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+.login-container input {
+  padding: 15px;
+  font-size: 24px;
+  width: 200px;
+  text-align: center;
+  background: #222;
+  border: 2px solid red;
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.login-container button {
+  width: 200px;
+  padding: 15px;
+  font-size: 20px;
+  background: #330000;
+  border: 1px solid red;
+  color: white;
+  border-radius: 8px;
+}
