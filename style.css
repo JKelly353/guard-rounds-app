@@ -182,3 +182,21 @@ button:active {
 .stat-item:last-child {
   border-bottom: none;
 }
+
+/* GRID TAB LAYOUT — NO MORE SCROLLING */
+.tabs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 buttons per row */
+  background: #111;
+  border-bottom: 1px solid #ff0000;
+}
+
+.tabs-grid .tab-btn {
+  padding: 10px 5px;
+  font-size: 13px;
+  border-right: 1px solid #300;
+}
+
+.tabs-grid .tab-btn:nth-child(3n) {
+  border-right: none; /* remove border from last in each row */
+}
