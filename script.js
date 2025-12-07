@@ -1,3 +1,28 @@
+// --------------- PIN LOGIN SYSTEM ---------------
+const CORRECT_PIN = "1234";  // <<< CHANGE THIS TO YOUR PIN
+
+function checkPIN() {
+  const pin = document.getElementById("pin-input").value;
+
+  if (pin === CORRECT_PIN) {
+    localStorage.setItem("authenticated", "true");
+
+    document.getElementById("login-screen").style.display = "none";
+    document.getElementById("app").style.display = "block";
+  } else {
+    alert("Incorrect PIN");
+  }
+}
+
+// Auto-login if user already authenticated this session
+window.onload = () => {
+  if (localStorage.getItem("authenticated") === "true") {
+    document.getElementById("login-screen").style.display = "none";
+    document.getElementById("app").style.display = "block";
+  }
+};
+// ------------------------------------------------
+
 const API_URL = "https://script.google.com/macros/s/AKfycbyHzmP9UtgASao6xPVQAykH0ukiKWLeiujauGCQwz3xMNmPm-pM5yLH4MKKlfKH80Aalw/exec";
 
 function logLocation(location, group) {
@@ -20,5 +45,6 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     document.getElementById(btn.dataset.tab).classList.add("active");
   });
 });
+
 
 
