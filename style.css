@@ -200,3 +200,7 @@ button:active {
 .tabs-grid .tab-btn:nth-child(3n) {
   border-right: none; /* remove border from last in each row */
 }
+.tabs-grid {
+  row-gap: 4px;
+}
+
