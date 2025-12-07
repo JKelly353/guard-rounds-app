@@ -125,6 +125,50 @@ function submitIncident() {
   document.getElementById("incident-text").value = "";
 }
 
+async function scanPlate() {
+  const fileInput = document.getElementById("plate-photo").files[0];
+  if (!fileInput) {
+    alert("Please take or select a photo first.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("upload", fileInput);
+
+  document.getElementById("plate-result").innerText = "Scanning...";
+
+  const response = await fetch("https://api.platerecognizer.com/v1/plate-reader/", {
+    method: "POST",
+    headers: {
+      "Authorization": "1ab5e422a49339041fbe461c51b93655c61da383"
+    },
+    body: formData
+  });
+
+  const data = await response.json();
+
+  if (!data.results || data.results.length === 0) {
+    document.getElementById("plate-result").innerText = "No plate detected.";
+    return;
+  }
+
+  const plate = data.results[0].plate.toUpperCase();
+
+  document.getElementById("plate-result").innerText =
+    "Detected Plate: " + plate;
+
+  // Log to Google Sheet
+  fetch(API_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      location: "LICENSE PLATE",
+      group: plate
+    })
+  });
+}
+
 const API_URL = "https://script.google.com/macros/s/AKfycbyCLXFC9PrJzM05Xpo-i2_qD-KR28TVXV31EU3AGELLR8Ve1I9W4C1l6T9retC1niBd7Q/exec";
 
 function logLocation(location, group) {
@@ -151,6 +195,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 }
   });
 });
+
 
 
 
