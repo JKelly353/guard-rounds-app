@@ -191,8 +191,11 @@ async function scanPlate() {
   }
 
   // Display result on screen
-  document.getElementById("plate-result").innerText =
-    `Plate: ${plate}\n${vehicleText}`;
+  document.getElementById("plate-result").innerHTML = `
+  <strong>LICENSE PLATE</strong><br>${plate}<br><br>
+  <strong>VEHICLE</strong><br>${vehicleText}
+`;
+
 
   // Log to Google Sheet
   fetch(API_URL, {
@@ -230,6 +233,7 @@ async function lookupVehicle(plate) {
     return null;
   }
 }
+
 
 
 
