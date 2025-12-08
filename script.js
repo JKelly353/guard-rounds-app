@@ -233,6 +233,48 @@ async function lookupVehicle(plate) {
     return null;
   }
 }
+// ---------------- HEATMAP SYSTEM ----------------
+async function loadHeatmap() {
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(rows => {
+      rows = rows.slice(1); // remove header row
+
+      const heatPoints = [];
+
+      rows.forEach(row => {
+        const lat = parseFloat(row[3]);
+        const lon = parseFloat(row[4]);
+
+        // Only include rows with valid GPS
+        if (!isNaN(lat) && !isNaN(lon)) {
+          const type = row[5];
+          let intensity = 0.5;
+
+          if (type === "Incident") intensity = 1.5;
+          if (type === "Plate") intensity = 1.0;
+          if (type === "Location") intensity = 0.7;
+
+          heatPoints.push([lat, lon, intensity]);
+        }
+      });
+
+      // Initialize map
+      const map = L.map('map').setView([44.2601, -72.5754], 15);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Add heat layer
+      L.heatLayer(heatPoints, { 
+        radius: 25,
+        blur: 15,
+        maxZoom: 17
+      }).addTo(map);
+    });
+}
+
 
 
 
