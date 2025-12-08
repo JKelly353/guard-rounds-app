@@ -133,15 +133,19 @@ function submitIncident() {
     alert("Please enter a note before submitting.");
     return;
   }
+  const gps = await getGPS();
 
   fetch(API_URL, {
     method: "POST",
     mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       location: location + " (Incident)",
-      group: note
-    }),
-    headers: { "Content-Type": "application/json" }
+      group: note,
+      lat: gps.lat,
+      lon: gps.lon,
+      scanType: "Incident"
+    })
   });
 
   document.getElementById("incident-confirm").textContent = "Incident submitted!";
@@ -241,15 +245,19 @@ async function scanPlate() {
   <strong>VEHICLE</strong><br>${vehicleText}
 `;
 
+  const gps = await getGPS();
 
-  // Log to Google Sheet
+  // Log to Google Sheet with GPS
   fetch(API_URL, {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       location: `LICENSE_PLATE: ${plate}`,
-      group: vehicleText
+      group: vehicleText,
+      lat: gps.lat,
+      lon: gps.lon,
+      scanType: "Plate"
     })
   });
 
@@ -319,6 +327,7 @@ async function loadHeatmap() {
       }).addTo(map);
     });
 }
+
 
 
 
