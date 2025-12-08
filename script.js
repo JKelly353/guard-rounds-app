@@ -151,7 +151,7 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
 }
   });
 });
-// ---------------- LICENSE PLATE SCANNER ----------------
+// ---------------- LICENSE PLATE SCANNER (UPGRADED) ----------------
 async function scanPlate() {
   const fileInput = document.getElementById("plate-photo").files[0];
   if (!fileInput) {
@@ -164,6 +164,7 @@ async function scanPlate() {
 
   document.getElementById("plate-result").innerText = "Scanning...";
 
+  // OCR PLATE
   const response = await fetch("https://api.platerecognizer.com/v1/plate-reader/", {
     method: "POST",
     headers: {
@@ -181,8 +182,17 @@ async function scanPlate() {
 
   const plate = data.results[0].plate.toUpperCase();
 
+  // LOOKUP VEHICLE INFO
+  const vehicle = await lookupVehicle(plate);
+
+  let vehicleText = "Vehicle info unavailable";
+  if (vehicle) {
+    vehicleText = `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
+  }
+
+  // Display result on screen
   document.getElementById("plate-result").innerText =
-    "Detected Plate: " + plate;
+    `Plate: ${plate}\n${vehicleText}`;
 
   // Log to Google Sheet
   fetch(API_URL, {
@@ -190,15 +200,37 @@ async function scanPlate() {
     mode: "no-cors",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      location: "LICENSE PLATE",
-      group: plate
+      location: `LICENSE_PLATE: ${plate}`,
+      group: vehicleText
     })
   });
 
-  // optional haptic vibration (iPhone)
+  // iPhone vibration for confirmation
   if (navigator.vibrate) navigator.vibrate(100);
 }
+
 // --------------------------------------------------------
+async function lookupVehicle(plate) {
+  const apiKey = "w8f019vJBvwKrq2bzUnZwQ==43hFs8DTzCVRgoEC"; // <-- Replace with your key
+
+  try {
+    const response = await fetch(
+      `https://api.api-ninjas.com/v1/vehicle?plate=${plate}`,
+      {
+        method: "GET",
+        headers: { "X-Api-Key": apiKey }
+      }
+    );
+
+    const data = await response.json();
+    return data && data.length > 0 ? data[0] : null;
+
+  } catch (error) {
+    console.error("Vehicle lookup failed:", error);
+    return null;
+  }
+}
+
 
 
 
