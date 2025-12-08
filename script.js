@@ -127,12 +127,20 @@ function submitIncident() {
 
 const API_URL = "https://script.google.com/macros/s/AKfycbyCLXFC9PrJzM05Xpo-i2_qD-KR28TVXV31EU3AGELLR8Ve1I9W4C1l6T9retC1niBd7Q/exec";
 
-function logLocation(location, group) {
+async function logLocation(location, group) {
+  const gps = await getGPS();  // ← get lat/lon
+
   fetch(API_URL, {
     method: "POST",
-    mode: "no-cors",       // ← REQUIRED FOR GOOGLE APPS SCRIPT
-    body: JSON.stringify({ location, group }),
-    headers: { "Content-Type": "application/json" }
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      location,
+      group,
+      lat: gps.lat,
+      lon: gps.lon,
+      scanType: "Location"
+    })
   });
 
   alert(`Logged: ${location}`);
@@ -288,6 +296,7 @@ async function loadHeatmap() {
       }).addTo(map);
     });
 }
+
 
 
 
