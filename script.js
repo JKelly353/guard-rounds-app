@@ -154,7 +154,7 @@ async function submitIncident() {
 }
 
 
-const API_URL = "https://script.google.com/macros/s/AKfycbyCLXFC9PrJzM05Xpo-i2_qD-KR28TVXV31EU3AGELLR8Ve1I9W4C1l6T9retC1niBd7Q/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzFtpUeKyYxHs3Zny3iZ84Vl7U11uDFynzyt3AMZ1qFSdpqPNpWmmJQr0vdB-gTODu8nw/exec";
 
 async function logLocation(location, group) {
   const gps = await getGPS();  // ← get lat/lon
@@ -329,6 +329,7 @@ async function loadHeatmap() {
       }).addTo(map);
     });
 }
+
 
 
 
