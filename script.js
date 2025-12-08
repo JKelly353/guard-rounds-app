@@ -1,5 +1,5 @@
 // --------------- PIN LOGIN SYSTEM ---------------
-const CORRECT_PIN = "4282";  // <<< CHANGE THIS TO YOUR PIN
+const CORRECT_PIN = "1234";  // <<< CHANGE THIS TO YOUR PIN
 
 function checkPIN() {
   const pin = document.getElementById("pin-input").value;
@@ -327,6 +327,7 @@ async function loadHeatmap() {
       }).addTo(map);
     });
 }
+
 
 
 
