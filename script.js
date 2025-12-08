@@ -141,16 +141,30 @@ function logLocation(location, group) {
 
 document.querySelectorAll(".tab-btn").forEach(btn => {
   btn.addEventListener("click", () => {
+
+    // Remove highlight from all tab buttons
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
 
+    // Hide all tabs
     document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+
+    // Show selected tab
     document.getElementById(btn.dataset.tab).classList.add("active");
+
+    // Load Analytics tab
     if (btn.dataset.tab === "analytics") {
-  loadAnalytics();
-}
+      loadAnalytics();
+    }
+
+    // ⭐ Load Heatmap tab
+    if (btn.dataset.tab === "heatmap") {
+      loadHeatmap();
+    }
+
   });
 });
+
 // ---------------- LICENSE PLATE SCANNER (UPGRADED) ----------------
 async function scanPlate() {
   const fileInput = document.getElementById("plate-photo").files[0];
@@ -274,6 +288,7 @@ async function loadHeatmap() {
       }).addTo(map);
     });
 }
+
 
 
 
