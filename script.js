@@ -22,6 +22,29 @@ window.onload = () => {
   }
    updateLastScanTimes(); // load last scan times
 };
+// ⭐⭐⭐ ADD getGPS() HERE ⭐⭐⭐
+async function getGPS() {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      resolve({ lat: null, lon: null });
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        resolve({
+          lat: pos.coords.latitude,
+          lon: pos.coords.longitude
+        });
+      },
+      err => {
+        console.warn("GPS failed:", err);
+        resolve({ lat: null, lon: null });
+      },
+      { enableHighAccuracy: true }
+    );
+  });
+}
 // ------------------------------------------------
 function updateLastScanTimes() {
   fetch(API_URL)
@@ -296,6 +319,7 @@ async function loadHeatmap() {
       }).addTo(map);
     });
 }
+
 
 
 
