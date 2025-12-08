@@ -203,4 +203,21 @@ button:active {
 .tabs-grid {
   row-gap: 4px;
 }
+.vehicle-card {
+  margin-top: 20px;
+  padding: 15px;
+  background: #111;
+  border-left: 4px solid red;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.4;
+  white-space: pre-line;
+}
+
+.vehicle-card strong {
+  color: #ff4d4d;
+  font-size: 20px;
+}
+
 
