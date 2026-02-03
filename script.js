@@ -14,13 +14,18 @@ function checkPIN() {
   }
 }
 
+const lastScanTimes = {};
+const RECENT_THRESHOLD_MINUTES = 30;
+const STALE_THRESHOLD_MINUTES = 90;
+
 // Auto-login if user already authenticated this session
 window.onload = () => {
   if (localStorage.getItem("authenticated") === "true") {
     document.getElementById("login-screen").style.display = "none";
     document.getElementById("app").style.display = "block";
   }
-   updateLastScanTimes(); // load last scan times
+  updateLastScanTimes(); // load last scan times
+  setInterval(refreshScanDisplay, 60 * 1000);
 };
 // ⭐⭐⭐ ADD getGPS() HERE ⭐⭐⭐
 async function getGPS() {
@@ -46,33 +51,94 @@ async function getGPS() {
   });
 }
 // ------------------------------------------------
+function cleanLocationId(location) {
+  return location.replace(/\s+/g, '');
+}
+
+function formatRelativeTime(timestamp) {
+  const diffMs = Date.now() - new Date(timestamp).getTime();
+  const diffMinutes = Math.max(0, Math.floor(diffMs / 60000));
+
+  if (diffMinutes < 1) return "Just now";
+  if (diffMinutes < 60) return `${diffMinutes} min ago`;
+
+  const hours = Math.floor(diffMinutes / 60);
+  if (hours < 24) return `${hours} hr${hours === 1 ? "" : "s"} ago`;
+
+  const days = Math.floor(hours / 24);
+  return `${days} day${days === 1 ? "" : "s"} ago`;
+}
+
+function updateCardStatus(card, statusClass) {
+  card.classList.remove("recent", "stale", "missing");
+  if (statusClass) {
+    card.classList.add(statusClass);
+  }
+}
+
+function refreshScanDisplay() {
+  document.querySelectorAll(".location-card").forEach(card => {
+    const location = card.dataset.location;
+    const cleanId = cleanLocationId(location);
+    const lastTimestamp = lastScanTimes[location];
+    const lastEl = document.getElementById(`last-${cleanId}`);
+    const agoEl = document.getElementById(`ago-${cleanId}`);
+    const statusEl = document.getElementById(`status-${cleanId}`);
+
+    if (!lastTimestamp) {
+      if (lastEl) lastEl.textContent = "Last scanned: ---";
+      if (agoEl) agoEl.textContent = "Never logged";
+      if (statusEl) {
+        statusEl.textContent = "Not scanned";
+        statusEl.className = "scan-status miss";
+      }
+      updateCardStatus(card, "missing");
+      return;
+    }
+
+    const dateObj = new Date(lastTimestamp);
+    const formattedTime = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const relative = formatRelativeTime(lastTimestamp);
+    const diffMinutes = Math.floor((Date.now() - dateObj.getTime()) / 60000);
+
+    if (lastEl) lastEl.textContent = `Last scanned: ${formattedTime}`;
+    if (agoEl) agoEl.textContent = `${relative} · ${dateObj.toLocaleDateString()}`;
+
+    if (statusEl) {
+      if (diffMinutes <= RECENT_THRESHOLD_MINUTES) {
+        statusEl.textContent = "Scanned recently";
+        statusEl.className = "scan-status ok";
+        updateCardStatus(card, "recent");
+      } else if (diffMinutes <= STALE_THRESHOLD_MINUTES) {
+        statusEl.textContent = "Needs a scan";
+        statusEl.className = "scan-status warn";
+        updateCardStatus(card, "stale");
+      } else {
+        statusEl.textContent = "Overdue";
+        statusEl.className = "scan-status miss";
+        updateCardStatus(card, "missing");
+      }
+    }
+  });
+}
+
 function updateLastScanTimes() {
   fetch(API_URL)
     .then(response => response.json())
     .then(rows => {
       // rows = [ [timestamp, location, group], ... ]
 
-      const lastTimes = {};
-
       rows.slice(1).forEach(row => {  
         const timestamp = row[0];
         const location = row[1];
 
         // Only update if this location hasn't been seen yet, or if this timestamp is newer
-        if (!lastTimes[location] || new Date(timestamp) > new Date(lastTimes[location])) {
-          lastTimes[location] = timestamp;
+        if (!lastScanTimes[location] || new Date(timestamp) > new Date(lastScanTimes[location])) {
+          lastScanTimes[location] = timestamp;
         }
       });
 
-      // Now update HTML
-      for (const location in lastTimes) {
-        const cleanID = location.replace(/\s+/g, '');
-        const el = document.getElementById(`last-${cleanID}`);
-        if (el) {
-          const dateObj = new Date(lastTimes[location]);
-          el.textContent = `Last scanned: ${dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
-        }
-      }
+      refreshScanDisplay();
     })
     .catch(err => console.error("Error fetching data:", err));
 }
@@ -158,6 +224,9 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzFtpUeKyYxHs3Zny3iZ84V
 
 async function logLocation(location, group) {
   const gps = await getGPS();  // ← get lat/lon
+  const now = new Date().toISOString();
+  lastScanTimes[location] = now;
+  refreshScanDisplay();
 
   fetch(API_URL, {
     method: "POST",

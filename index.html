@@ -32,56 +32,170 @@
 <div id="national" class="tab active">
   <h2>National Life Floors</h2>
   <div class="buttons">
-    <button onclick="logLocation('Floor 1','National')">Floor 1</button>
-     <div id="last-Floor1" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('Floor 2','National')">Floor 2</button>
-     <div id="last-Floor2" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('Floor 3','National')">Floor 3</button>
-     <div id="last-Floor3" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('Floor 4','National')">Floor 4</button>
-     <div id="last-Floor4" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('Floor 5','National')">Floor 5</button>
-     <div id="last-Floor5" class="last-scan">Last scanned: ---</div>
+    <div class="location-card" data-location="Floor 1" data-group="National">
+      <button onclick="logLocation('Floor 1','National')">Floor 1</button>
+      <div class="scan-meta">
+        <span id="last-Floor1" class="last-scan">Last scanned: ---</span>
+        <span id="ago-Floor1" class="scan-ago">Never</span>
+        <span id="status-Floor1" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="Floor 2" data-group="National">
+      <button onclick="logLocation('Floor 2','National')">Floor 2</button>
+      <div class="scan-meta">
+        <span id="last-Floor2" class="last-scan">Last scanned: ---</span>
+        <span id="ago-Floor2" class="scan-ago">Never</span>
+        <span id="status-Floor2" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="Floor 3" data-group="National">
+      <button onclick="logLocation('Floor 3','National')">Floor 3</button>
+      <div class="scan-meta">
+        <span id="last-Floor3" class="last-scan">Last scanned: ---</span>
+        <span id="ago-Floor3" class="scan-ago">Never</span>
+        <span id="status-Floor3" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="Floor 4" data-group="National">
+      <button onclick="logLocation('Floor 4','National')">Floor 4</button>
+      <div class="scan-meta">
+        <span id="last-Floor4" class="last-scan">Last scanned: ---</span>
+        <span id="ago-Floor4" class="scan-ago">Never</span>
+        <span id="status-Floor4" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="Floor 5" data-group="National">
+      <button onclick="logLocation('Floor 5','National')">Floor 5</button>
+      <div class="scan-meta">
+        <span id="last-Floor5" class="last-scan">Last scanned: ---</span>
+        <span id="ago-Floor5" class="scan-ago">Never</span>
+        <span id="status-Floor5" class="scan-status">Not scanned</span>
+      </div>
+    </div>
   </div>
 </div>
 
 <div id="davis" class="tab">
   <h2>Davis Building</h2>
   <div class="buttons">
-    <button onclick="logLocation('B','Davis')">Basement (B)</button>
-     <div id="last-B" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('1','Davis')">1</button>
-     <div id="last-1" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('2','Davis')">2</button>
-     <div id="last-2" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('3','Davis')">3</button>
-     <div id="last-3" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('4','Davis')">4</button>
-     <div id="last-4" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('5','Davis')">5</button>
-     <div id="last-5" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('6','Davis')">6</button>
-     <div id="last-6" class="last-scan">Last scanned: ---</div>
+    <div class="location-card" data-location="B" data-group="Davis">
+      <button onclick="logLocation('B','Davis')">Basement (B)</button>
+      <div class="scan-meta">
+        <span id="last-B" class="last-scan">Last scanned: ---</span>
+        <span id="ago-B" class="scan-ago">Never</span>
+        <span id="status-B" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="1" data-group="Davis">
+      <button onclick="logLocation('1','Davis')">1</button>
+      <div class="scan-meta">
+        <span id="last-1" class="last-scan">Last scanned: ---</span>
+        <span id="ago-1" class="scan-ago">Never</span>
+        <span id="status-1" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="2" data-group="Davis">
+      <button onclick="logLocation('2','Davis')">2</button>
+      <div class="scan-meta">
+        <span id="last-2" class="last-scan">Last scanned: ---</span>
+        <span id="ago-2" class="scan-ago">Never</span>
+        <span id="status-2" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="3" data-group="Davis">
+      <button onclick="logLocation('3','Davis')">3</button>
+      <div class="scan-meta">
+        <span id="last-3" class="last-scan">Last scanned: ---</span>
+        <span id="ago-3" class="scan-ago">Never</span>
+        <span id="status-3" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="4" data-group="Davis">
+      <button onclick="logLocation('4','Davis')">4</button>
+      <div class="scan-meta">
+        <span id="last-4" class="last-scan">Last scanned: ---</span>
+        <span id="ago-4" class="scan-ago">Never</span>
+        <span id="status-4" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="5" data-group="Davis">
+      <button onclick="logLocation('5','Davis')">5</button>
+      <div class="scan-meta">
+        <span id="last-5" class="last-scan">Last scanned: ---</span>
+        <span id="ago-5" class="scan-ago">Never</span>
+        <span id="status-5" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="6" data-group="Davis">
+      <button onclick="logLocation('6','Davis')">6</button>
+      <div class="scan-meta">
+        <span id="last-6" class="last-scan">Last scanned: ---</span>
+        <span id="ago-6" class="scan-ago">Never</span>
+        <span id="status-6" class="scan-status">Not scanned</span>
+      </div>
+    </div>
   </div>
 </div>
 
 <div id="outside" class="tab">
   <h2>Outside Areas</h2>
   <div class="buttons">
-    <button onclick="logLocation('Daycare','Outside')">Daycare</button>
-     <div id="last-Daycare" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('Transfer Station','Outside')">Transfer Station</button>
-     <div id="last-TransferStation" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('Parking Garage','Outside')">Parking Garage</button>
-     <div id="last-ParkingGarage" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('Guest House','Outside')">Guest House</button>
-     <div id="last-GuestHouse" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('Back Parking Lot','Outside')">Back Parking Lot</button>
-     <div id="last-BackParkingLot" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('Generator Room','Outside')">Generator Room</button>
-     <div id="last-GeneratorRoom" class="last-scan">Last scanned: ---</div>
-    <button onclick="logLocation('Dewey Building','Outside')">Dewey Building</button>
-     <div id="last-DeweyBuilding" class="last-scan">Last scanned: ---</div>
+    <div class="location-card" data-location="Daycare" data-group="Outside">
+      <button onclick="logLocation('Daycare','Outside')">Daycare</button>
+      <div class="scan-meta">
+        <span id="last-Daycare" class="last-scan">Last scanned: ---</span>
+        <span id="ago-Daycare" class="scan-ago">Never</span>
+        <span id="status-Daycare" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="Transfer Station" data-group="Outside">
+      <button onclick="logLocation('Transfer Station','Outside')">Transfer Station</button>
+      <div class="scan-meta">
+        <span id="last-TransferStation" class="last-scan">Last scanned: ---</span>
+        <span id="ago-TransferStation" class="scan-ago">Never</span>
+        <span id="status-TransferStation" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="Parking Garage" data-group="Outside">
+      <button onclick="logLocation('Parking Garage','Outside')">Parking Garage</button>
+      <div class="scan-meta">
+        <span id="last-ParkingGarage" class="last-scan">Last scanned: ---</span>
+        <span id="ago-ParkingGarage" class="scan-ago">Never</span>
+        <span id="status-ParkingGarage" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="Guest House" data-group="Outside">
+      <button onclick="logLocation('Guest House','Outside')">Guest House</button>
+      <div class="scan-meta">
+        <span id="last-GuestHouse" class="last-scan">Last scanned: ---</span>
+        <span id="ago-GuestHouse" class="scan-ago">Never</span>
+        <span id="status-GuestHouse" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="Back Parking Lot" data-group="Outside">
+      <button onclick="logLocation('Back Parking Lot','Outside')">Back Parking Lot</button>
+      <div class="scan-meta">
+        <span id="last-BackParkingLot" class="last-scan">Last scanned: ---</span>
+        <span id="ago-BackParkingLot" class="scan-ago">Never</span>
+        <span id="status-BackParkingLot" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="Generator Room" data-group="Outside">
+      <button onclick="logLocation('Generator Room','Outside')">Generator Room</button>
+      <div class="scan-meta">
+        <span id="last-GeneratorRoom" class="last-scan">Last scanned: ---</span>
+        <span id="ago-GeneratorRoom" class="scan-ago">Never</span>
+        <span id="status-GeneratorRoom" class="scan-status">Not scanned</span>
+      </div>
+    </div>
+    <div class="location-card" data-location="Dewey Building" data-group="Outside">
+      <button onclick="logLocation('Dewey Building','Outside')">Dewey Building</button>
+      <div class="scan-meta">
+        <span id="last-DeweyBuilding" class="last-scan">Last scanned: ---</span>
+        <span id="ago-DeweyBuilding" class="scan-ago">Never</span>
+        <span id="status-DeweyBuilding" class="scan-status">Not scanned</span>
+      </div>
+    </div>
   </div>
 </div>
 
