@@ -5,7 +5,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  background: #0d0d0d;
+  background: radial-gradient(circle at top, #1a0505 0%, #0a0a0a 45%, #050505 100%);
   color: white;
   font-family: 'Orbitron', sans-serif;
   overflow-x: hidden;
@@ -82,7 +82,7 @@ button {
   padding: 15px;
   width: 100%;
   font-size: 18px;
-  margin: 8px 0;
+  margin: 0;
   border-radius: 10px;
 
   /* Neon glow */
@@ -98,6 +98,102 @@ button:hover {
 button:active {
   transform: scale(0.97);
   box-shadow: 0 0 6px rgba(255,0,0,0.4);
+}
+
+/* ============================
+   Location Cards
+============================ */
+
+.buttons {
+  display: grid;
+  gap: 14px;
+}
+
+.location-card {
+  background: rgba(15, 5, 5, 0.9);
+  border: 1px solid rgba(255, 0, 0, 0.35);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.location-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255, 0, 0, 0.15), transparent 60%);
+  pointer-events: none;
+}
+
+.location-card button {
+  margin-bottom: 10px;
+}
+
+.scan-meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.scan-ago {
+  color: #ffcccc;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.scan-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  width: fit-content;
+}
+
+.scan-status::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.scan-status.ok {
+  color: #7efc8a;
+  background: rgba(0, 80, 20, 0.45);
+  border: 1px solid rgba(126, 252, 138, 0.4);
+}
+
+.scan-status.warn {
+  color: #ffb347;
+  background: rgba(90, 40, 0, 0.4);
+  border: 1px solid rgba(255, 179, 71, 0.4);
+}
+
+.scan-status.miss {
+  color: #ff5252;
+  background: rgba(80, 0, 0, 0.45);
+  border: 1px solid rgba(255, 82, 82, 0.4);
+}
+
+.location-card.recent {
+  border-color: rgba(126, 252, 138, 0.5);
+  box-shadow: 0 0 20px rgba(126, 252, 138, 0.15);
+}
+
+.location-card.stale {
+  border-color: rgba(255, 179, 71, 0.5);
+}
+
+.location-card.missing {
+  border-color: rgba(255, 82, 82, 0.5);
 }
 
 /* ============================
